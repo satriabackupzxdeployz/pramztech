@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRAMZTECH</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:monospace;}
+.video-bg{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-2;}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:-1;}
+#loginPage,#homePage,#delayPage,#delayIOSPage,#spamPage{display:none;min-height:100vh;flex-direction:column;align-items:center;padding-top:40px;color:white;position:relative;}
+#loginPage{display:flex;justify-content:center;align-items:center;}
+.login-box{width:320px;padding:30px;border-radius:15px;background:rgba(255,255,255,0.08);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,0.2);z-index:2;}
+.login-box h2{color:white;text-align:center;margin-bottom:20px;}
+.login-box input{width:100%;padding:10px;margin-bottom:15px;border:none;border-radius:6px;background:rgba(255,255,255,0.1);color:white;}
+.login-box button{width:100%;padding:10px;border:none;border-radius:6px;background:#00ffcc;font-weight:bold;cursor:pointer;}
+.logo{width:180px;border-radius:25px;margin-bottom:20px;z-index:1;}
+.menu button{width:320px;padding:15px;margin:10px 0;border:none;border-radius:30px;background:rgba(0,0,0,0.6);color:white;font-size:18px;backdrop-filter:blur(10px);cursor:pointer;display:flex;align-items:center;justify-content:flex-start;gap:10px;transition:0.3s;z-index:2;}
+.menu button i{margin-left:15px;width:20px;}
+.menu button:hover{background:rgba(0,0,0,0.8);}
+input[type=number]{width:320px;height:55px;border-radius:30px;border:none;padding:0 15px;font-size:18px;text-align:center;background:rgba(0,0,0,0.6);color:white;backdrop-filter:blur(10px);margin:10px 0;z-index:2;}
+.footer{margin-top:30px;padding:20px;font-size:12px;text-align:center;opacity:0.7;z-index:2;}
+.loadingOverlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:999;display:flex;justify-content:center;align-items:center;flex-direction:column;color:white;font-size:24px;font-weight:bold;}
+.spinner{border:5px solid rgba(255,255,255,0.2);border-top:5px solid #00ffcc;border-radius:50%;width:60px;height:60px;animation:spin 1s linear infinite;margin-bottom:15px;}
+@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage">
+    <video autoplay muted loop playsinline class="video-bg"><source src="./bg.mp4" type="video/mp4"></video>
+    <div class="overlay"></div>
+    <div class="login-box">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()"><i class="fa-solid fa-right-to-bracket"></i> Masuk</button>
+    </div>
+</div>
+
+<!-- HOME -->
+<div id="homePage">
+    <video autoplay muted loop playsinline class="video-bg"><source src="./bg.mp4" type="video/mp4"></video>
+    <div class="overlay"></div>
+    <img src="logo.png" class="logo">
+
+    <div class="menu"><button onclick="showDelayPage()"><i class="fa-solid fa-bolt"></i> DELAY HARD</button></div>
+    <div class="menu"><button onclick="showDelayIOSPage()"><i class="fa-brands fa-apple"></i> DELAY IOS</button></div>
+    <div class="menu"><button onclick="showSpamOptions()"><i class="fa-solid fa-fire"></i> SPAM WHATSAPP</button></div>
+    <div class="menu"><button onclick="chatWAHome()"><i class="fa-brands fa-whatsapp"></i> PRAMZTECH CONTACT</button></div>
+    <div class="menu"><button onclick="buyWebsite()"><i class="fa-brands fa-whatsapp"></i> BUY WEBSITE</button></div>
+    <div class="menu"><button onclick="vtDownloader()"><i class="fa-solid fa-circle-down"></i> VT DOWNLOADER</button></div>
+
+    <div class="footer">USE WISELY. IF ANYTHING HAPPENS, PRAMZTECH AND ADMIN ARE NOT RESPONSIBLE</div>
+</div>
+
+<!-- DELAY HARD -->
+<div id="delayPage">
+    <video autoplay muted loop playsinline class="video-bg"><source src="./bg.mp4" type="video/mp4"></video>
+    <div class="overlay"></div>
+    <img src="logo.png" class="logo">
+    <input type="number" id="delayNumber" placeholder="Masukkan 9-13 angka" oninput="limitInput(this)">
+    <div class="menu"><button onclick="submitDelay(this)"><i class="fa-solid fa-paper-plane"></i> Submit</button></div>
+    <div class="menu"><button onclick="backToHomeDelay()"><i class="fa-solid fa-arrow-left"></i> Kembali</button></div>
+</div>
+
+<!-- DELAY IOS -->
+<div id="delayIOSPage">
+    <video autoplay muted loop playsinline class="video-bg"><source src="./bg.mp4" type="video/mp4"></video>
+    <div class="overlay"></div>
+    <img src="logo.png" class="logo">
+    <input type="number" id="delayIOSNumber" placeholder="Masukkan 9-13 angka" oninput="limitInput(this)">
+    <div class="menu"><button onclick="submitDelayIOS(this)"><i class="fa-solid fa-paper-plane"></i> Submit</button></div>
+    <div class="menu"><button onclick="backToHomeDelayIOS()"><i class="fa-solid fa-arrow-left"></i> Kembali</button></div>
+</div>
+
+<!-- SPAM WHATSAPP -->
+<div id="spamPage">
+    <video autoplay muted loop playsinline class="video-bg"><source src="./bg.mp4" type="video/mp4"></video>
+    <div class="overlay"></div>
+    <img src="logo.png" class="logo">
+    <div class="menu"><button onclick="showSpamDelay('spam')"><i class="fa-solid fa-paper-plane"></i> Spam WhatsApp</button></div>
+    <div class="menu"><button onclick="showSpamDelay('banned')"><i class="fa-solid fa-ban"></i> Banned Permanent</button></div>
+    <div class="menu"><button onclick="backToHomeSpam()"><i class="fa-solid fa-arrow-left"></i> Kembali</button></div>
+</div>
+
+<script>
+/* MULTI-USER LOGIN */
+let accounts = [
+    {user:"pramztech", pass:"2208"},
+    {user:"prmzv1", pass:"1234"},
+    {user:"prmzv2", pass:"2323"},
+    {user:"prmzv3", pass:"3456"},
+    {user:"prmzv4", pass:"2208"},
+    {user:"prmzv5", pass:"2011"}
+];
+
+function login(){
+    const user = document.getElementById("username").value.trim();
+    const pass = document.getElementById("password").value.trim();
+    let found = accounts.some(acc => acc.user === user && acc.pass === pass);
+    if(found){
+        document.getElementById("loginPage").style.display="none";
+        document.getElementById("homePage").style.display="flex";
+    } else {
+        alert("Username atau Password salah!");
+    }
+}
+
+/* HOME BUTTONS */
+function chatWAHome(){window.location.href="https://api.whatsapp.com/send?phone=6281913682427&text="+encodeURIComponent("Halo Admin,\n\nSaya ingin menghubungi PRAMZTECH.");}
+function buyWebsite(){window.location.href="https://api.whatsapp.com/send?phone=6281913682427&text="+encodeURIComponent("Halo, saya ingin membeli website.");}
+function vtDownloader(){window.open("https://snaptik.app","_blank");}
+
+/* DELAY HARD */
+function showDelayPage(){document.getElementById("homePage").style.display="none";document.getElementById("delayPage").style.display="flex";}
+function backToHomeDelay(){document.getElementById("delayPage").style.display="none";document.getElementById("homePage").style.display="flex";}
+
+/* DELAY IOS */
+function showDelayIOSPage(){document.getElementById("homePage").style.display="none";document.getElementById("delayIOSPage").style.display="flex";}
+function backToHomeDelayIOS(){document.getElementById("delayIOSPage").style.display="none";document.getElementById("homePage").style.display="flex";}
+
+/* SPAM WHATSAPP */
+function showSpamOptions(){document.getElementById("homePage").style.display="none";document.getElementById("spamPage").style.display="flex";}
+function showSpamDelay(type){
+    document.getElementById("spamPage").style.display="none";
+    let inputId=type==='spam'?'delayNumber':'delayIOSNumber';
+    let pageId=type==='spam'?'delayPage':'delayIOSPage';
+    document.getElementById(pageId).style.display="flex";
+    document.getElementById(inputId).focus();
+}
+function backToHomeSpam(){document.getElementById("spamPage").style.display="none";document.getElementById("homePage").style.display="flex";}
+
+/* INPUT LIMIT */
+function limitInput(el){if(el.value.length>13) el.value=el.value.slice(0,13);}
+
+/* SUBMIT dengan overlay */
+function submitDelay(btn){
+    const val=document.getElementById("delayNumber").value.trim();
+    if(val.length<9 || val.length>13) return alert("Masukkan minimal 9 dan maksimal 13 angka!");
+    const overlay=document.createElement("div"); overlay.className="loadingOverlay"; overlay.innerHTML='<div class="spinner"></div>'; document.body.appendChild(overlay);
+    document.getElementById("delayNumber").disabled=true; btn.disabled=true;
+    setTimeout(()=>{overlay.remove(); document.getElementById("delayNumber").disabled=false; btn.disabled=false; document.getElementById("delayNumber").value=""; alert("Bug telah terkirim!"); backToHomeDelay();},4000);
+}
+
+function submitDelayIOS(btn){
+    const val=document.getElementById("delayIOSNumber").value.trim();
+    if(val.length<9 || val.length>13) return alert("Masukkan minimal 9 dan maksimal 13 angka!");
+    const overlay=document.createElement("div"); overlay.className="loadingOverlay"; overlay.innerHTML='<div class="spinner"></div>'; document.body.appendChild(overlay);
+    document.getElementById("delayIOSNumber").disabled=true; btn.disabled=true;
+    setTimeout(()=>{overlay.remove(); document.getElementById("delayIOSNumber").disabled=false; btn.disabled=false; document.getElementById("delayIOSNumber").value=""; alert("Bug telah terkirim!"); backToHomeDelayIOS();},4000);
+}
+</script>
+</body>
+</html>
