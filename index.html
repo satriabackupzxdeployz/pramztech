@@ -86,6 +86,10 @@ input[type=number]{width:320px;height:55px;border-radius:30px;border:none;paddin
     <div class="menu"><button onclick="backToHomeSpam()"><i class="fa-solid fa-arrow-left"></i> Kembali</button></div>
 </div>
 
+    <video autoplay muted loop id="background-video">
+  <source src="video.mp4" type="video/mp4">
+    </video>
+
 <script>
 /* MULTI-USER LOGIN */
 let accounts = [
@@ -152,6 +156,7 @@ function submitDelayIOS(btn){
     document.getElementById("delayIOSNumber").disabled=true; btn.disabled=true;
     setTimeout(()=>{overlay.remove(); document.getElementById("delayIOSNumber").disabled=false; btn.disabled=false; document.getElementById("delayIOSNumber").value=""; alert("Bug telah terkirim!"); backToHomeDelayIOS();},4000);
 }
+
 </script>
 </body>
 </html>
